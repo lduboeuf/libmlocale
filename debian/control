@@ -1,0 +1,31 @@
+Source: libmlocale
+Section: libs
+Priority: optional
+Maintainer: Alberto Mardegan <mardy@users.sourceforge.net>
+Build-Depends: debhelper-compat (= 12),
+               pkg-config,
+               libicu-dev,
+               qt5-default,
+               qtbase5-dev,
+               qttools5-dev
+Standards-Version: 3.9.5
+Homepage: https://github.com/sailfishos/libmlocale
+
+Package: libmlocale0
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         libicu
+Description: Contains classes MLocale and friends originally from libmeegotouch.
+             With that separation one can use those localization facilities without
+             having to bring on board also the MeeGo Touch GUI toolkit.
+
+Package: libmlocale-dev
+Section: devel
+Architecture: any
+Depends: libmlocale0 (= ${Source-Version}),
+ qtbase5-dev
+Description: MeeGo Touch development files
+ Development files for MeeGo Touch

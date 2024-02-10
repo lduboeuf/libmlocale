@@ -1,0 +1,5 @@
+libmlocale (0.5.0+ubports) focal; urgency=medium
+
+  * Initial release.
+
+ -- Alberto Mardegan <mardy@users.sourceforge.net>  Tue, 17 Oct 2022 22:45:55 +0300

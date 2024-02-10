@@ -69,7 +69,7 @@ HAVE_ICU=no
 OPT_SHADOW=maybe
 
 IS_ARMEL=no
-   
+
 # initalize variables used for installation
 M_INSTALL_PREFIX=/usr/local
 M_INSTALL_SYSCONFDIR=/etc
@@ -150,6 +150,7 @@ while [ "$#" -gt 0 ]; do
     shift
 
     UNKNOWN_OPT=no
+    echo "olala $VAR"
     case "$VAR" in
     prefix)
         M_INSTALL_PREFIX="$VAL"
@@ -176,7 +177,7 @@ while [ "$#" -gt 0 ]; do
         CFG_TESTABLE="$VAL"
         ;;
     no-werror)
-        CFG_NO_WERROR="yes" 
+        CFG_NO_WERROR="yes"
         ;;
     coverage)
         CFG_COVERAGE="$VAL"
@@ -291,12 +292,9 @@ fi
 
 # Test for ICU
 if [ "$CFG_ICU" != "no" ]; then
-    which icu-config > /dev/null
+    pkg-config --exists icu-uc
     if [ $? -eq 0 ]; then
-        icu-config --exists
-        if [ $? -eq 0 ]; then
-            HAVE_ICU=yes
-        fi
+        HAVE_ICU=yes
     fi
     if [ "$CFG_ICU" = "yes" -a "$HAVE_ICU" = "no" ]; then
         echo "You specified  -icu  but icu was not found."
@@ -421,7 +419,7 @@ fi
 
 if [ "$IS_ARMEL" = "yes" ]; then
     MLOCALECONFIG_DEPS="$MLOCALECONFIG_DEPS IS_ARMEL"
-fi                               
+fi
 
 
 cat >>"$MLOCALECONFIG.tmp" <<EOF
